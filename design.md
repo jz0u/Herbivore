@@ -24,6 +24,9 @@
 The herbivore project is a web/mobile application that focuses on cataloging cannabis strains.
 Users can browse strain information, report effects, and receieve recommendations based on their preferences.
 
+target users: cannabis consumers, researchers
+goals: bilding a community, education users
+
 ## 2. Features
 
 ### A. Cannabis Strain Database
@@ -40,6 +43,7 @@ Users can browse strain information, report effects, and receieve recommendation
 
 - search by: 
    - strain name
+   - flexible search with typo tolerance
    
 - filter by: 
    - effect
@@ -55,10 +59,11 @@ Users can browse strain information, report effects, and receieve recommendation
 - user-reported effects
 - pros and cons
 - time log
-
+- helpfulness
 ### D. Dispensary Location
 
-- nearest place to purchase from
+- geolocation based dispensary recomendations
+- incoration of google maps API
 
 ### E. Personalized Strain Recommendations
 
