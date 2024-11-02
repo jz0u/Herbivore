@@ -1,234 +1,450 @@
-# The Herbivore Project
-
+# The Herbivore Project - Technical Design Document
 
 ## Table of Contents
-1.[Overview](#overview)
-2.[Features](#2-features)
-   [Cannabis Strain Database](#a-cannabis-strain-database)
-   [Search and Filtering](#b-search-and-filtering)
-   [User Review System](#c-user-review-system)
-   [Dispensary Location](#d-dispensary-location)
-   [Personalized Strain Recommendations](#e-personalized-strain-recommendations)
-   [User Account](#f-user-account)
-   [Educational Resources](#g-educational-resources)
-3.[Technology Stack](#3-technology-stack)
-4.[Development Challenges and Solutions](#4-development-challenges-and-solutions)
-5.[Database Schema](#5-database-schema)
-6.[API Design]()
-7.[Machine Learning Recommendation Model]()
-8.[UI/UX Design]()
-9.[Security and Compliance]()
+1. [Overview](#1-overview)
+2. [Features](#2-features)
+3. [Technology Stack](#3-technology-stack)
+4. [Architecture](#4-architecture)
+5. [Database Schema](#5-database-schema)
+6. [API Design](#6-api-design)
+7. [Machine Learning Model](#7-machine-learning-model)
+8. [UI/UX Design](#8-uiux-design)
+9. [Security and Compliance](#9-security-and-compliance)
+10. [Development Roadmap](#10-development-roadmap)
 
 ## 1. Overview
 
-The herbivore project is a web/mobile application that focuses on cataloging cannabis strains.
-Users can browse strain information, report effects, and receieve recommendations based on their preferences.
+### Project Description
+The Herbivore Project is a comprehensive web and mobile application designed to catalog and provide detailed information about cannabis strains. The platform aims to create an educational and community-driven ecosystem for cannabis enthusiasts and researchers.
 
-target users: cannabis consumers, researchers
-goals: bilding a community, education users
+### Target Audience
+- Cannabis consumers seeking strain information
+- Medical cannabis patients
+- Researchers and industry professionals
+- Dispensary owners and staff
+
+### Core Objectives
+- Build a comprehensive, accurate strain database
+- Create an engaged, knowledgeable community
+- Provide personalized strain recommendations
+- Educate users about cannabis safety and effects
+- Ensure compliance with regional regulations
 
 ## 2. Features
 
 ### A. Cannabis Strain Database
+#### Core Data Points
+- Strain name and unique identifier
+- Type classification (Indica, Sativa, Hybrid with percentages)
+- Cannabinoid profile (THC, CBD, CBN, etc.)
+- Terpene profile
+- Genetic lineage
+- Growing characteristics
+- Price range indicators
 
-- Strain name
-- type(Indica, Sativa, Hybrid)
-- THC/CBD percentages
-- common effects
-- aroma/flavor
-- growing difficulty
-- price range
+#### Additional Metadata
+- Associated medical conditions
+- Common effects
+- Flavor profiles
+- Aroma characteristics
+- Growing difficulty
+- Average user rating
 
-### B. Search and Filtering
+### B. Search and Discovery System
+#### Search Capabilities
+- Full-text search with typo tolerance
+- Autocomplete suggestions
+- Natural language processing for effect-based queries
+- Voice search support
 
-- search by: 
-   - strain name
-   - flexible search with typo tolerance
-   
-- filter by: 
-   - effect
-   - medical condition
-   - THC/CBD levels
-   - Flavor notes
-   - price range
+#### Filtering Options
+- Cannabinoid content ranges
+- Effect categories
+- Medical conditions
+- Flavor profiles
+- Price ranges
+- User ratings
+- Growing difficulty
 
 ### C. User Review System
+#### Review Components
+- Numerical rating (1-5 stars)
+- Effect reporting
+- Consumption method
+- Dosage information
+- Pros and cons
+- Photo uploads
+- Experience description
+- Helpfulness voting
 
-- star ratings
-- text reviews
-- user-reported effects
-- pros and cons
-- time log
-- helpfulness
-### D. Dispensary Location
+#### Review Management
+- Moderation system
+- Report functionality
+- Quality scoring algorithm
+- User reputation system
 
-- geolocation based dispensary recomendations
-- incoration of google maps API
+### D. Dispensary Integration
+#### Location Features
+- Geolocation-based search
+- Google Maps integration
+- Operating hours and contact info
+- Real-time inventory (where available)
+- Price comparison
+- User reviews and ratings
 
-### E. Personalized Strain Recommendations
+#### Dispensary Portal
+- Inventory management
+- Strain information updates
+- Customer feedback management
+- Analytics dashboard
 
-- **Machine Learning Model**
-   - A recommendation engine leverages collaborative filtering or content-based filtering to suggest strains based on past interactions and preferences.
+### E. Recommendation Engine
+#### Personalization System
+- Collaborative filtering algorithm
+- Content-based recommendations
+- Hybrid approach combining multiple signals
+- A/B testing framework
 
-- **Preference Questionnaire**
-   - Optional questionnaire asking users about their goals (e.g., relaxation, pain relief) to better tailor suggestions.
-  
-- **Feedback Loop**
-   - Users can give feedback on recommendations to improve the model over time, helping refine suggestions as data grows.
+#### Data Collection
+- User preferences questionnaire
+- Usage patterns
+- Review history
+- Medical conditions (optional)
+- Effect preferences
+- Flavor preferences
 
-### F. User Account
+### F. User Account System
+#### Core Functionality
+- Secure authentication
+- Profile management
+- Strain favorites/bookmarks
+- Review management
+- Personalized recommendations
+- Usage journal
 
-- user account
-- favorite/bookmark system
-- messaging
-- create post
+#### Social Features
+- Follow other users
+- Share strains/reviews
+- Community discussions
+- Direct messaging
+- Activity feed
 
 ### G. Educational Resources
+#### Content Types
+- Strain guides
+- Consumption methods
+- Safety information
+- Legal resources
+- Medical research
+- Growing guides
 
-- **Strain Education:**
-
-   Provides information about strain genetics, the differences between Indica, Sativa, and Hybrid strains, and how THC/CBD ratios affect users.
-
-- **Consumption Safety Guidelines:**
-
-   Resources on safe usage, potential risks, and interaction effects, including health considerations.
-
-- **Legal Information:**
-
-   Education about legal considerations, tailored by region (if applicable), such as regulations around possession and use.
+#### Educational Features
+- Interactive learning modules
+- Video content
+- Infographics
+- Expert articles
+- Community contributions
+- FAQ system
 
 ## 3. Technology Stack
 
-- FrontEnd: **React** or Vue.js
-- Backend: **Node.js** with **Express**
-- Database: **MongoDB** (NoSQL for strain data flexibility) or PostgreSQL (for structured relational data).
-- Authentication: JWT
-- Deployment: AWS or Heroku or Netlify
-- Machine Learning: Python with Scikit-Learn or TensorFlow for recommendation engine
+### Frontend
+- **Framework**: React 18
+- **State Management**: Redux Toolkit
+- **UI Components**: Tailwind CSS + shadcn/ui
+- **Data Visualization**: Recharts
+- **Maps Integration**: Google Maps API
+- **Testing**: Jest + React Testing Library
 
-## 4. Development Challenges and Solutions
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **API Documentation**: OpenAPI/Swagger
+- **Authentication**: JWT + OAuth2
+- **Rate Limiting**: Express-rate-limit
 
-1. Data Collection and Accuracy:
+### Database
+- **Primary Database**: PostgreSQL
+- **Search Engine**: Elasticsearch
+- **Caching Layer**: Redis
+- **File Storage**: AWS S3
 
-Challenge: Aggregating reliable, diverse data on strains and effects from reputable sources.
-Solution: Partner with existing cannabis databases (like Leafly) through their API, if available, or allow user-generated entries with a moderation system.
+### Machine Learning
+- **Framework**: Python + scikit-learn
+- **Model Serving**: Flask API
+- **Feature Store**: Feast
+- **Model Monitoring**: MLflow
 
-2. Machine Learning Model Accuracy:
+### DevOps
+- **CI/CD**: GitHub Actions
+- **Hosting**: AWS (ECS + RDS)
+- **Monitoring**: Datadog
+- **Logging**: ELK Stack
 
-Challenge: Building a recommendation model that accurately matches users with strains based on limited initial data.
-Solution: Start with basic filtering by strain attributes and effects, then improve the model over time by gathering user feedback and interactions.
+## 4. Architecture
 
-3. Legal Considerations and Compliance:
+### System Components
+```mermaid
+graph TD
+    A[Web Client] --> B[API Gateway]
+    C[Mobile Client] --> B
+    B --> D[Application Server]
+    D --> E[PostgreSQL]
+    D --> F[Elasticsearch]
+    D --> G[Redis Cache]
+    D --> H[ML Service]
+    H --> I[Feature Store]
+    D --> J[File Storage]
+```
 
-Challenge: Ensuring the app complies with legal regulations around cannabis content and user privacy, especially if user data involves medical use.
-Solution: Follow best practices for data encryption, user consent, and clear disclaimers about medical information.
-
-4. User Engagement:
-
-Challenge: Keeping users engaged with the app and ensuring data is regularly updated.
-Solution: Incorporate gamification elements (like badges for reviews) and offer regular updates, notifications on new strains, and user-tailored recommendations.
+### High-Level Flow
+1. Client requests handled through API Gateway
+2. Authentication/Authorization via JWT
+3. Application logic in Express server
+4. Data persistence in PostgreSQL
+5. Search queries to Elasticsearch
+6. Caching layer with Redis
+7. ML predictions via separate service
+8. File storage in S3
 
 ## 5. Database Schema
 
-1. Strains
+### Strains
+```sql
+CREATE TABLE strains (
+    id UUID PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    type ENUM('Indica', 'Sativa', 'Hybrid') NOT NULL,
+    thc_content DECIMAL(4,2),
+    cbd_content DECIMAL(4,2),
+    effects JSONB,
+    flavors JSONB,
+    medical_uses JSONB,
+    genetic_lineage JSONB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-strain_id: UUID
-name: String
-type: Enum (Indica, Sativa, Hybrid)
-thc_content: Float
-cbd_content: Float
-effects: List of effects (e.g., relaxation, focus)
-flavors: List of flavors (e.g., citrus, berry)
-medical_uses: List of common uses (e.g., anxiety, pain relief)
+### Users
+```sql
+CREATE TABLE users (
+    id UUID PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    preferences JSONB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-2. UserProfiles
+### Reviews
+```sql
+CREATE TABLE reviews (
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    strain_id UUID REFERENCES strains(id),
+    rating INTEGER CHECK (rating BETWEEN 1 AND 5),
+    effects JSONB,
+    content TEXT,
+    helpful_votes INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, strain_id)
+);
+```
 
-user_id: UUID
-username: String
-email: String
-preferences: List (e.g., desired effects, medicinal needs)
-reviewed_strains: List of reviewed strain IDs
+### Usage Logs
+```sql
+CREATE TABLE usage_logs (
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    strain_id UUID REFERENCES strains(id),
+    dosage DECIMAL(5,2),
+    method VARCHAR(50),
+    effects JSONB,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-3. Reviews
+## 6. API Design
 
-review_id: UUID
-user_id: Reference to User
-strain_id: Reference to Strain
-rating: Integer (1-5)
-effects: List of effects experienced
-comments: Text
-created_at: Timestamp
+### RESTful Endpoints
 
-4. UsageLogs (Optional)
+#### Strain Management
+```
+GET    /api/v1/strains
+GET    /api/v1/strains/{id}
+POST   /api/v1/strains
+PUT    /api/v1/strains/{id}
+DELETE /api/v1/strains/{id}
+```
 
-log_id: UUID
-user_id: Reference to User
-strain_id: Reference to Strain
-dose: Float
-symptoms_treated: List of symptoms
+#### User Management
+```
+POST   /api/v1/auth/register
+POST   /api/v1/auth/login
+GET    /api/v1/users/{id}
+PUT    /api/v1/users/{id}
+DELETE /api/v1/users/{id}
+```
 
-## 7. API Design
+#### Review Management
+```
+GET    /api/v1/strains/{id}/reviews
+POST   /api/v1/strains/{id}/reviews
+PUT    /api/v1/reviews/{id}
+DELETE /api/v1/reviews/{id}
+```
 
-Endpoints
+#### Recommendation Engine
+```
+GET    /api/v1/recommendations
+POST   /api/v1/recommendations/feedback
+```
 
-1. Strain Data
+### API Response Format
+```json
+{
+    "status": "success",
+    "data": {},
+    "message": "",
+    "metadata": {
+        "timestamp": "",
+        "version": ""
+    }
+}
+```
 
-GET /api/strains: Retrieve all strains with filters for type, THC/CBD, effects.
-GET /api/strains/{strain_id}: Retrieve detailed information about a specific strain.
-POST /api/strains: Add a new strain (admin-only).
+## 7. Machine Learning Model
 
-2. User Reviews
+### Recommendation Engine Architecture
 
-POST /api/reviews: Submit a review for a strain.
-GET /api/reviews/{strain_id}: Retrieve reviews for a specific strain.
+#### Data Pipeline
+1. Feature Engineering
+   - User preferences
+   - Strain characteristics
+   - Usage patterns
+   - Review sentiment
+   - Effect correlations
 
-3. Recommendations
+2. Model Training
+   - Collaborative filtering
+   - Content-based filtering
+   - Hybrid approach
+   - Regular retraining schedule
 
-GET /api/recommendations/{user_id}: Get personalized strain recommendations.
+3. Serving Infrastructure
+   - Real-time predictions
+   - Batch predictions
+   - A/B testing framework
+   - Model monitoring
 
-4. User Management
+### Algorithm Details
+```python
+class StrainRecommender:
+    def __init__(self):
+        self.collaborative_model = CollaborativeFilter()
+        self.content_model = ContentBasedFilter()
+        
+    def get_recommendations(self, user_id):
+        collaborative_recs = self.collaborative_model.predict(user_id)
+        content_recs = self.content_model.predict(user_id)
+        return self.ensemble_predictions(collaborative_recs, content_recs)
+```
 
-POST /api/auth/signup: Register a new user.
-POST /api/auth/login: Authenticate and log in a user.
+## 8. UI/UX Design
 
-## 8. Machine Learning Recommendation Model
+### Design System
+- Typography: Inter for headers, System UI for body
+- Color Palette: 
+  - Primary: #4F46E5
+  - Secondary: #10B981
+  - Accent: #F59E0B
+  - Neutrals: #111827 to #F9FAFB
+- Components: shadcn/ui library
+- Spacing System: 4px base unit
+- Responsive Breakpoints: 640px, 768px, 1024px, 1280px
 
-***Approach***
-The recommendation engine will use a collaborative filtering or content-based filtering approach. Based on the strain characteristics and user reviews, it will suggest strains that match the user’s preferences or past interactions.
+### Key Screens
+1. Home/Discovery
+2. Strain Details
+3. User Profile
+4. Review Creation
+5. Educational Content
+6. Search Results
+7. Recommendations
 
-***Model Training***
-Data Preprocessing: Aggregate strain data, user reviews, and user interactions.
-Model Type: Collaborative filtering (K-Nearest Neighbors) or content-based filtering (TF-IDF vectorization).
-Evaluation Metrics: Mean Absolute Error (MAE) for predicted ratings or accuracy in matching user preferences.
+### Navigation Structure
+```
+Home
+├── Discover
+├── Search
+├── Strains
+│   ├── Details
+│   └── Reviews
+├── Profile
+│   ├── Favorites
+│   ├── Reviews
+│   └── Settings
+└── Education
+    ├── Guides
+    ├── Safety
+    └── Research
+```
 
-***Deployment***
-The model will be retrained periodically using batch processing. Recommendations will be served through API endpoints integrated with the main backend.
+## 9. Security and Compliance
 
-## 9. UI/UX Design
+### Data Protection
+- End-to-end encryption
+- Regular security audits
+- Penetration testing
+- Data backup strategy
+- GDPR compliance
+- CCPA compliance
 
-***Key UI Components***
+### Authentication & Authorization
+- JWT-based authentication
+- Role-based access control
+- OAuth2 social login
+- 2FA support
+- Session management
+- Password policies
 
-**Home Page:** Search and filter strains, view trending or popular strains.
-**Strain Detail Page:** Display strain information, effects, flavors, and user reviews.
-**Recommendation Page:** Personalized suggestions based on user preferences.
-**User Profile:** View and manage user preferences, review history, and settings.
-**Educational Resources:** Access articles and guides on cannabis usage, safety, and legalities.
+### Privacy Considerations
+- Data minimization
+- User consent management
+- Privacy policy
+- Terms of service
+- Age verification
+- Geographic restrictions
 
-***UX Considerations***
+## 10. Development Roadmap
 
-**User Engagement:** Gamification for review contributions (e.g., badges).
-**Accessibility:** Clear typography and contrast, screen reader support.
-**Intuitive Navigation:** Smooth transitions between strain details, reviews, and recommendations.
+### Phase 1: MVP (3 months)
+- Basic strain database
+- User authentication
+- Simple search/filter
+- Basic reviews
+- Mobile-responsive design
 
-## 10. Security and Compliance
+### Phase 2: Enhanced Features (3 months)
+- Advanced search
+- Recommendation engine
+- Dispensary integration
+- Educational content
+- Social features
 
-**User Data Security**
+### Phase 3: Scale & Optimize (3 months)
+- Performance optimization
+- Analytics implementation
+- Advanced personalization
+- Mobile apps
+- API marketplace
 
-Encryption: SSL/TLS for data in transit, AES encryption for sensitive data at rest.
-Authentication: Firebase Authentication or OAuth for secure login.
-Access Control: Role-based access control for sensitive operations.
-
-**Compliance**
-
-Legal Disclaimer: Clear statements about non-medical advice.
-User Consent: GDPR-compliant consent for data collection and usage.
+### Phase 4: Enterprise & Integration (3 months)
+- Enterprise features
+- Third-party integrations
+- Advanced analytics
+- International expansion
+- Premium features
