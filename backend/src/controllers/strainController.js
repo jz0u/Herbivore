@@ -26,11 +26,11 @@ const getStrain = async (req, res) => {
 
 //create new strain
 const createStrain = async (req, res) => {
-    const {id,name,type,thc,cbd,effects} = req.body
+    const {name,type,thc,cbd,effects} = req.body
 
     //add doc to db
     try {
-        const strain = await Strain.create({id,name,type,thc,cbd,effects})
+        const strain = await Strain.create({name,type,thc,cbd,effects})
 
         res.status(200).json(strain)
         
