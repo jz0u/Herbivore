@@ -1,7 +1,11 @@
 const Strain = require('../models/strainModel.js')
 
 //get all strain
+const getStrains = async (req, res) => {
+    const strains = await Strain.find({}).sort({createdAt: -1})
 
+    res.status(200).json(strains)
+}
 
 //get single strain
 
