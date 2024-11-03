@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 
-const strainRoutes = require('./routes/strainRoutes.js');
+const strainRoutes = require('./routes/strainRoute.js');
 const { configDotenv } = require('dotenv');
 
 
