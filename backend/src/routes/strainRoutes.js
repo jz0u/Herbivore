@@ -1,4 +1,5 @@
 const express = require('express');
+const Strain = require('../models/strainModel.js')
 
 const router = express.Router();
 
@@ -13,7 +14,18 @@ router.get('/:id', (req,res) => {
 });
 
 //post a new strain
-router.post('/',(req,res)=>{
+router.post('/',async (req,res)=>{
+
+    const {id,name,type,thc,cbd,effects} = req.body
+
+    try {
+        const strain = await Strain.create({id,name,type,thc,cbd,effects})
+        res.status(200).json(strain)
+        
+    } catch(error){
+        res.status(400).json({error: error.message})
+    }
+
     res.json({mssg: 'post a new strain'})
 })
 
