@@ -1,5 +1,5 @@
 const Strain = require('../models/strainModel.js')
-
+const mongoose = require('mongoose')
 //get all strain
 const getStrains = async (req, res) => {
     const strains = await Strain.find({}).sort({createdAt: -1})
@@ -8,7 +8,21 @@ const getStrains = async (req, res) => {
 }
 
 //get single strain
+const getStrain = async (req, res) => {
+    const {id} = req.params
 
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'no such strain'})
+    }
+
+    const strain = await Strain.findById(id)
+
+    if (!strain){
+        return res.status(404).json({error: 'no such strain'}) 
+    }
+
+    res.status(200).json(strain)
+}
 
 //create new strain
 const createStrain = async (req, res) => {
@@ -17,21 +31,54 @@ const createStrain = async (req, res) => {
     //add doc to db
     try {
         const strain = await Strain.create({id,name,type,thc,cbd,effects})
+
         res.status(200).json(strain)
         
     } catch(error){
         res.status(400).json({error: error.message})
     }
 
-    res.json({mssg: 'post a new strain'})
+    
 }
 
 //delete a strain
+const deleteStrain = async (req,res) => {
+    const {id} = req.params
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'no such strain'})
+    }
+    const strain = await Strain.findOneAndDelete({_id: id})
 
+    if (!strain){
+        return res.status(404).json({error: 'no such strain'}) 
+    }
+
+    res.status(200).json(strain)
+
+}
 
 //update a strain
+const updateStrain = async (req,res) => {
+    const {id} = req.params
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'no such strain'})
+    }
+    const strain = await Strain.findOneAndUpdate({_id: id}, {
+        ...req.body
+    })
 
+    if (!strain){
+        return res.status(404).json({error: 'no such strain'}) 
+    }
+
+    res.status(200).json(strain)
+
+}
 
 module.exports={
-    createStrain
+    createStrain,
+    getStrain,
+    getStrains,
+    deleteStrain,
+    updateStrain
 }

@@ -1,6 +1,10 @@
 const express = require('express');
 const {
     createStrain,
+    getStrain,
+    getStrains,
+    deleteStrain,
+    updateStrain 
     
 } = require('../controllers/strainController.js')
 
@@ -8,26 +12,18 @@ const {
 const router = express.Router();
 
 //get all strain
-router.get('/', (req,res) => {
-    res.json({mssg: 'get all strain'});
-});
+router.get('/', getStrains);
 
 //get a single strain
-router.get('/:id', (req,res) => {
-    res.json({mssg: 'get a sigle strain'});
-});
+router.get('/:id', getStrain);
 
 //post a new strain
 router.post('/', createStrain)
 
 //delete a strain
-router.delete('/:id',(req,res)=>{
-    res.json({mssg: 'delete a strain'})
-})
+router.delete('/:id',deleteStrain)
 
 //update a strain
-router.patch('/:id',(req,res)=>{
-    res.json({mssg: 'update a new strain'})
-})
+router.patch('/:id',(updateStrain))
 
 module.exports = router;
